@@ -27,7 +27,7 @@ namespace AgriConnectApplication_st10044023.Controllers
             string farmerID = col["FarmerID"];
             string name = col["Name"];
             string email = col["Email"];
-            string passwordHash = col["PasswordHash"];
+            string password = col["Password"];
 
             // Create Farmer object and assign EmpID to farmer profile of the current logged in Employee
             Farmer farmer = new Farmer
@@ -36,7 +36,7 @@ namespace AgriConnectApplication_st10044023.Controllers
                 EmpID = empID,
                 Name = name,
                 Email = email,
-                Password = passwordHash
+                Password = password
             };
 
             //checking if the data inserted by the employee is valid
@@ -46,13 +46,13 @@ namespace AgriConnectApplication_st10044023.Controllers
                 using (SqlConnection connection = Connections.GetConnection())
                 {
                     //the data inserted by the employee will be posted into the database using the INSERT query
-                    string cmdInsert = "INSERT INTO AgriFarmers (FarmerID, EmpID, Name, Email, PasswordHash) VALUES (@FarmerID, @EmpID, @Name, @Email, @PasswordHash)";
+                    string cmdInsert = "INSERT INTO AgriFarmers (FarmerID, EmpID, Name, Email, Password) VALUES (@FarmerID, @EmpID, @Name, @Email, @Password)";
                     SqlCommand command = new SqlCommand(cmdInsert, connection);
                     command.Parameters.AddWithValue("@FarmerID", farmer.FarmerID);
                     command.Parameters.AddWithValue("@EmpID", farmer.EmpID);
                     command.Parameters.AddWithValue("@Name", farmer.Name);
                     command.Parameters.AddWithValue("@Email", farmer.Email);
-                    command.Parameters.AddWithValue("@PasswordHash", farmer.Password);
+                    command.Parameters.AddWithValue("@Password", farmer.Password);
                     //open the connection, execute the query and then once the query has been executed we close the connection
                     connection.Open();
                     command.ExecuteNonQuery();

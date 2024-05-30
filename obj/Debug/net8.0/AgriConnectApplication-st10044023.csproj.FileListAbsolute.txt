@@ -39,3 +39,4 @@ C:\Users\vaugh\source\repos\AgriConnectApplication-st10044023\obj\Debug\net8.0\r
 C:\Users\vaugh\source\repos\AgriConnectApplication-st10044023\obj\Debug\net8.0\AgriConnectApplication-st10044023.pdb
 C:\Users\vaugh\source\repos\AgriConnectApplication-st10044023\obj\Debug\net8.0\AgriConnectApplication-st10044023.genruntimeconfig.cache
 C:\Users\vaugh\source\repos\AgriConnectApplication-st10044023\obj\Debug\net8.0\ref\AgriConnectApplication-st10044023.dll
+C:\Users\vaugh\source\repos\AgriConnectApplication-st10044023\obj\Debug\net8.0\AgriConnectApplication-st10044023.sourcelink.json
