@@ -1,0 +1,148 @@
+﻿@model AgriConnectLibrary.UserLogin
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            background-image: url('/images/Tree.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        .navbar {
+            width: 100%;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        .container {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        form {
+            width: 350px;
+            margin: 0 auto;
+        }
+
+            form .form-group {
+                margin-bottom: 1rem;
+            }
+
+            form label {
+                display: block;
+                margin-bottom: 5px;
+                color: white;
+                font-size: 24px;
+                text-decoration-thickness: 12px
+            }
+
+            form input {
+                font-family: inherit;
+                width: 100%;
+                outline: none;
+                background-color: #fff;
+                border-radius: 4px;
+                border: none;
+                display: block;
+                padding: 0.9rem 0.7rem;
+                box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+                font-size: 17px;
+                color: #000;
+            }
+
+            form .btn {
+                outline: none;
+                border: none;
+                cursor: pointer;
+                text-align: center;
+                background-color: darkslategray color: #fff;
+                border-radius: 4px;
+                box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+                font-size: 17px;
+            }
+
+        h1 {
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">AgriConnect</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Privacy">Privacy</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Welcome to AgriConnect</h1>
+        <h1>Please Login Below</h1>
+
+        <form asp-action="ProcessLogin" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="UserID" class="control-label">Employee/Farmer ID:</label>
+                <input asp-for="UserID" class="form-control" required />
+                <span asp-validation-for="UserID" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password" class="control-label">Password:</label>
+                <div class="input-group">
+                    <input asp-for="Password" class="form-control" type="password" id="passwordInput" required />
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <input type="checkbox" onclick="togglePasswordVisibility()" style="width: 20px; height: 20px;"> Show
+                        </div>
+                    </div>
+                </div>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+        </form>
+
+    </div>
+
+    <script>
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById('passwordInput');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+            } else {
+                passwordInput.type = 'password';
+            }
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

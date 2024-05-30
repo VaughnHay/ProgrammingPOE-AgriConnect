@@ -1,0 +1,168 @@
+﻿@model AgriConnectLibrary.Product
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Product Profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            background-image: url('/images/Tree.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        .navbar {
+            width: 100%;
+        }
+
+        h2 {
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="submit"] {
+            margin-top: 1rem;
+        }
+
+        .container {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        form {
+            width: 350px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="@Url.Action("MainPage", "Login")">AgriConnect</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("CreateProduct", "Farmer")">Create Product</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("DisplayEmployeeProfile", "Farmer")">Employee Profiles</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("DisplayOwnProducts", "Farmer")">View Your Products</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#helpModal">Help</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Login">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Create Product</h2>
+        <form asp-action="CreateProduct" method="post">
+            @if (ViewBag.SuccessMessage != null)
+            {
+                <div class="alert alert-success" role="alert">
+                    @ViewBag.SuccessMessage
+                </div>
+            }
+            @if (ViewBag.ErrorMessage != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @ViewBag.ErrorMessage
+                </div>
+            }
+            <div class="form-group">
+                <label for="ProductID">Product ID:</label>
+                <input type="text" class="form-control" name="ProductID" required />
+                <span asp-validation-for="ProductID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="Name">Product Name:</label>
+                <input type="text" class="form-control" name="Name" required />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="Category">Product Category:</label>
+                <input type="text" class="form-control" name="Category" required />
+                <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="ProductDate">Production Date:</label>
+                <input type="date" class="form-control" name="ProductDate" required />
+                <span asp-validation-for="ProductDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+            <div class="form-group">
+                <a href="@Url.Action("MainPage", "Login")" class="btn btn-primary">Back</a>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <h5>Welcome to the AgriConnect Application!</h5>
+                <p>This application is designed to bridge the gap between the agricultural sector and green energy technology providers, enhancing sustainability and productivity. Here is how to use the application:</p>
+
+                <strong>Green Energy:</strong>
+                <p>Explore various green energy solutions tailored for agriculture. Stay updated with the latest innovations and find providers that match your needs.</p>
+
+                <strong>Create Farmer Profile:</strong>
+                <p>Register a new farmer profile by navigating to the "Create Farmer" section and filling in the required fields.</p>
+
+                <strong>Create Product:</strong>
+                <p>Farmers can add new products by going to the "Create Product" page. Fill in all required fields such as Product ID, Name, Category, and Production Date. Ensure that all fields are filled out to avoid errors.</p>
+
+                <strong>View Product List:</strong>
+                <p>Farmers can view their products by navigating to the "View Your Products" section. Use filters to narrow down the search by category and date range if needed.</p>
+
+                <strong>View Employee Profiles:</strong>
+                <p>Farmers and administrators can view all registered employee profiles in the "Employee Profiles" section.</p>
+
+                <strong>Logout:</strong>
+                <p>To securely end your session, click on "Logout" in the menu. This will log you out and redirect you to the login page.</p>
+
+                <strong>Help:</strong>
+                <p>For additional assistance on how to use specific features or navigate the application, or if you have any further questions, feel free to email us at: st10044023@vcconnect.edu.za</p>
+
+                <p>Thank you for using the AgriConnect Application!</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

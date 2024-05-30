@@ -1,0 +1,156 @@
+﻿@model IEnumerable<AgriConnectLibrary.Farmer>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Farmer Profiles</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            background-image: url('/images/Tree.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        .navbar {
+            width: 100%;
+        }
+
+        h2 {
+            margin-top: 1rem;
+            color: #fff;
+        }
+
+        .table {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+        }
+
+            .table th, .table td {
+                text-align: center;
+                vertical-align: middle;
+                color: white; /* Ensure all text in table is white */
+            }
+
+        .container {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 5rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">AgriConnect</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("CreateFarmer", "Employee")">Create Farmer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("DisplayFarmerProfile", "Employee")">View Farmer Profiles</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("DisplayProducts", "Employee")">View Products</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#helpModal">Help</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Login">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Farmer Profiles</h2>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Farmer ID</th>
+                    <th>Employee ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var farmer in Model)
+                {
+                    <tr>
+                        <td>@farmer.FarmerID</td>
+                        <td>@farmer.EmpID</td>
+                        <td>@farmer.Name</td>
+                        <td>@farmer.Email</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="helpModalLabel">Help</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="color: black;">
+                    <h5>Welcome to the AgriConnect Application!</h5>
+                    <p>This application is designed to bridge the gap between the agricultural sector and green energy technology providers, enhancing sustainability and productivity. Here is how to use the application:</p>
+
+                    <strong>Green Energy:</strong>
+                    <p>Explore various green energy solutions tailored for agriculture. Stay updated with the latest innovations and find providers that match your needs.</p>
+
+                    <strong>Create Farmer Profile:</strong>
+                    <p>Register a new farmer profile by navigating to the "Create Farmer" section and filling in the required fields.</p>
+
+                    <strong>Create Product:</strong>
+                    <p>Farmers can add new products by going to the "Create Product" page. Fill in all required fields such as Product ID, Name, Category, and Production Date. Ensure that all fields are filled out to avoid errors.</p>
+
+                    <strong>View Product List:</strong>
+                    <p>Farmers can view their products by navigating to the "View Your Products" section. Use filters to narrow down the search by category and date range if needed.</p>
+
+                    <strong>View Employee Profiles:</strong>
+                    <p>Farmers and administrators can view all registered employee profiles in the "Employee Profiles" section.</p>
+
+                    <strong>Logout:</strong>
+                    <p>To securely end your session, click on "Logout" in the menu. This will log you out and redirect you to the login page.</p>
+
+                    <strong>Help:</strong>
+                    <p>For additional assistance on how to use specific features or navigate the application, or if you have any further questions, feel free to email us at: st10044023@vcconnect.edu.za</p>
+
+                    <p>Thank you for using the AgriConnect Application!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
